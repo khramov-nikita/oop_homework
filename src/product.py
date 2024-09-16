@@ -2,6 +2,7 @@ class Product:
     """
     Класс описывающий продукт в магазине, содержит название, описание, цену и количество
     """
+
     name: str
     description: str
     price: float

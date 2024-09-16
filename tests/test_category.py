@@ -25,4 +25,5 @@ def test_category_init(product_1: Product, product_2: Product, product_3: Produc
     )
     assert category_1.category_count == 2
     assert category_2.category_count == 2
-    assert category_2.product_count == 1
+    assert category_1.product_count == 4
+    assert category_2.product_count == 4

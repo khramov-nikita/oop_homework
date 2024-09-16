@@ -2,6 +2,7 @@ class Category:
     """
     Класс описывающий категорию товаров, содержит название категории, описание категории и список продуктов
     """
+
     name: str
     description: str
     products: list
@@ -13,4 +14,4 @@ class Category:
         self.description = description
         self.products = products if products else []
         Category.category_count += 1
-        Category.product_count = len(products) if products else 0
+        Category.product_count += len(products) if products else 0
