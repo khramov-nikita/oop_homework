@@ -23,7 +23,7 @@ def test_product_3_init(product_3: Product) -> None:
 
 
 def test_product_4_init(product_4: Product) -> None:
-    assert product_4.name == "55\" QLED 4K"
+    assert product_4.name == '55" QLED 4K'
     assert product_4.description == "Фоновая подсветка"
     assert product_4.price == 123000.0
     assert product_4.quantity == 7

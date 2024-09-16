@@ -1,6 +1,7 @@
 import pytest
-from src.product import Product
+
 from src.category import Category
+from src.product import Product
 
 
 @pytest.fixture
@@ -20,4 +21,4 @@ def product_3() -> Product:
 
 @pytest.fixture
 def product_4() -> Product:
-    return Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
+    return Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7)
