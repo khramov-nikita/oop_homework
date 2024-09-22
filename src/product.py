@@ -15,7 +15,7 @@ class Product:
         self.quantity = quantity
 
     @property
-    def product_dict(self):
+    def to_dict(self):
         return {"name": self.name, "description": self.description, "price": self.__price, "quantity": self.quantity}
 
     @property
