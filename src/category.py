@@ -1,3 +1,5 @@
+from typing import Any
+
 from src.product import Product
 
 
@@ -8,7 +10,7 @@ class Category:
 
     name: str
     description: str
-    products: list
+    __products: list
     category_count = 0
     product_count = 0
 
@@ -19,30 +21,27 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products) if products else 0
 
-    def __str__(self):
+    def __str__(self) -> str:
         quantity = 0
         for product in self.__products:
             quantity += product.quantity
         return f"{self.name}, количество продуктов: {quantity} шт."
 
-    def add_product(self, *args: Product):
-        if issubclass(type(args), tuple):
-            for arg in args:
-                if issubclass(arg.__class__, Product):
-                    self.__products.append(arg)
-                else:
-                    raise TypeError
-                Category.product_count += len(args)
-        else:
-            raise TypeError
+    def add_product(self, *args: Product) -> None:
+        for arg in args:
+            if issubclass(arg.__class__, Product):
+                self.__products.append(arg)
+            else:
+                raise TypeError
+            Category.product_count += len(args)
 
     @property
-    def products(self):
+    def products(self) -> str:
         result = []
         for product in self.__products:
             result.append(f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n")
         return "".join(result)
 
     @property
-    def products_list(self):
+    def products_list(self) -> Any:
         return self.__products

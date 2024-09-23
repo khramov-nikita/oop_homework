@@ -46,7 +46,7 @@ def test_product_price(capsys: Any, product_1: Product) -> None:
     assert product_1.price == 200000
 
 
-def test_new_product():
+def test_new_product() -> None:
     product = Product.new_product(
         {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
          "quantity": 5})
