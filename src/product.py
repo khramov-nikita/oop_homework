@@ -18,12 +18,9 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        try:
-            result = self.quantity * self.price + other.quantity * other.price
-        except TypeError as e:
-            raise f"{e}, can not add two non Product objects"
-        else:
-            return result
+        if isinstance(other, Product):
+            return self.quantity * self.price + other.quantity * other.price
+        raise TypeError
 
     @property
     def to_dict(self):
@@ -67,6 +64,11 @@ class Smartphone(Product):
         self.memory = memory
         self.color = color
 
+    def __add__(self, other):
+        if isinstance(other, Smartphone):
+            return self.quantity * self.price + other.quantity * other.price
+        raise TypeError
+
 
 class LawnGrass(Product):
     """
@@ -86,3 +88,8 @@ class LawnGrass(Product):
         self.country = country
         self.germination_period = germination_period
         self.color = color
+
+    def __add__(self, other):
+        if isinstance(other, LawnGrass):
+            return self.quantity * self.price + other.quantity * other.price
+        raise TypeError

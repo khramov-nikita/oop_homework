@@ -26,9 +26,15 @@ class Category:
         return f"{self.name}, количество продуктов: {quantity} шт."
 
     def add_product(self, *args: Product):
-        for arg in args:
-            self.__products.append(arg)
-        Category.product_count += len(args)
+        if issubclass(type(args), tuple):
+            for arg in args:
+                if issubclass(arg.__class__, Product):
+                    self.__products.append(arg)
+                else:
+                    raise TypeError
+                Category.product_count += len(args)
+        else:
+            raise TypeError
 
     @property
     def products(self):
@@ -40,4 +46,3 @@ class Category:
     @property
     def products_list(self):
         return self.__products
-
