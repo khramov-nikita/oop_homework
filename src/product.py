@@ -14,6 +14,9 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self):
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
     @property
     def to_dict(self):
         return {"name": self.name, "description": self.description, "price": self.__price, "quantity": self.quantity}
