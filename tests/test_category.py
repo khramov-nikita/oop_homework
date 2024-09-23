@@ -4,7 +4,32 @@ from src.category import Category
 from src.product import Product
 
 
+def test_add_product(category: Category, product_4: Product) -> None:
+    assert category.product_count == 3
+    category.add_product(product_4)
+    assert category.product_count == 4
+
+
+def test_products(capsys: Any, category: Category) -> None:
+    print(category.products)
+    captured = capsys.readouterr()
+    assert (
+            "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.\n" +
+            "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n" +
+            "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n"
+            in captured.out
+    )
+
+
+def test_category_str(capsys: Any, category: Category) -> None:
+    print(category)
+    captured = capsys.readouterr()
+    assert "Смартфоны, количество продуктов: 27 шт." in captured.out
+
+
 def test_category_init(product_1: Product, product_2: Product, product_3: Product, product_4: Product) -> None:
+    Category.category_count = 0
+    Category.product_count = 0
     category_1 = Category(
         "Смартфоны",
         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для " "удобства жизни",
@@ -29,26 +54,3 @@ def test_category_init(product_1: Product, product_2: Product, product_3: Produc
     assert category_2.category_count == 2
     assert category_1.product_count == 4
     assert category_2.product_count == 4
-
-
-def test_add_product(category: Category, product_4: Product) -> None:
-    assert category.product_count == 3
-    category.add_product(product_4)
-    assert category.product_count == 4
-
-
-def test_products(capsys: Any, category: Category) -> None:
-    print(category.products)
-    captured = capsys.readouterr()
-    assert (
-            "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.\n" +
-            "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n" +
-            "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n"
-            in captured.out
-    )
-
-
-def test_category_str(capsys: Any, category: Category) -> None:
-    print(category)
-    captured = capsys.readouterr()
-    assert "Смартфоны, количество продуктов: 27 шт." in captured.out
