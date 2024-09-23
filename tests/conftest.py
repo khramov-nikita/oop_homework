@@ -26,6 +26,8 @@ def product_4() -> Product:
 
 @pytest.fixture
 def category() -> Category:
+    Category.category_count = 0
+    Category.product_count = 0
     return Category(
         "Смартфоны",
         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для " "удобства жизни",
