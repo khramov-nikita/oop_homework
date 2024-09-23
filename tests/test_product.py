@@ -27,3 +27,26 @@ def test_product_4_init(product_4: Product) -> None:
     assert product_4.description == "Фоновая подсветка"
     assert product_4.price == 123000.0
     assert product_4.quantity == 7
+
+
+def test_product_price(capsys, product_1: Product) -> None:
+    product_1.price = 0
+    captured_1 = capsys.readouterr()
+    assert "Цена не должна быть нулевая или отрицательная" in captured_1.out
+    assert product_1.price == 180000.0
+    product_1.price = - 20000
+    captured_2 = capsys.readouterr()
+    assert "Цена не должна быть нулевая или отрицательная" in captured_2.out
+    assert product_1.price == 180000.0
+    product_1.price = 200000
+    assert product_1.price == 200000
+
+
+def test_new_product():
+    product = Product.new_product(
+        {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
+         "quantity": 5})
+    assert product.name == "Samsung Galaxy S23 Ultra"
+    assert product.description == "256GB, Серый цвет, 200MP камера"
+    assert product.price == 180000.0
+    assert product.quantity == 5
