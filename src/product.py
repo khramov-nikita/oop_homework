@@ -8,7 +8,7 @@ class Product:
     price: float
     quantity: int
 
-    def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
+    def __init__(self, name: str, description: str, price: float, quantity: int):
         self.name = name
         self.description = description
         self.__price = price
@@ -16,6 +16,14 @@ class Product:
 
     def __str__(self):
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other):
+        try:
+            result = self.quantity * self.price + other.quantity * other.price
+        except TypeError as e:
+            raise f'{e}, can not add two non Product objects'
+        else:
+            return result
 
     @property
     def to_dict(self):
