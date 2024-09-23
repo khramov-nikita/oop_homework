@@ -46,3 +46,9 @@ def test_products(capsys: Any, category: Category) -> None:
             "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n"
             in captured.out
     )
+
+
+def test_category_str(capsys: Any, category: Category) -> None:
+    print(category)
+    captured = capsys.readouterr()
+    assert "Смартфоны, количество продуктов: 27 шт." in captured.out
