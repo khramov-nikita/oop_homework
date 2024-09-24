@@ -1,5 +1,7 @@
 from typing import Any
 
+import pytest
+
 from src.category import Category
 from src.product import Product
 
@@ -32,7 +34,6 @@ def test_category_init(product_1: Product, product_2: Product, product_3: Produc
     assert category_2.product_count == 4
 
 
-
 def test_add_product(category: Category, product_4: Product) -> None:
     assert category.product_count == 3
     category.add_product(product_4)
@@ -54,5 +55,11 @@ def test_category_str(capsys: Any, category: Category) -> None:
     print(category)
     captured = capsys.readouterr()
     assert "Смартфоны, количество продуктов: 27 шт." in captured.out
+
+
+def test_add_wrong_type(category: Category) -> None:
+    with pytest.raises(TypeError) as exc_info:
+        category.add_product(7)
+        category.add_product("sdrgsa")
 
 

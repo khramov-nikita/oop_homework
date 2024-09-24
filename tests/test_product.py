@@ -46,7 +46,7 @@ def test_product_price(capsys: Any, product_1: Product) -> None:
     assert product_1.price == 200000
 
 
-def test_new_product():
+def test_new_product() -> None:
     product = Product.new_product(
         {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
          "quantity": 5})
@@ -64,6 +64,6 @@ def test_product_str(capsys: Any, product_1: Product) -> None:
 
 def test_product_add(product_1: Product, product_2: Product) -> None:
     assert product_1 + product_2 == 2580000.0
-    with pytest.raises(AttributeError) as exc_info:
+    with pytest.raises(TypeError) as exc_info:
         result = product_1 + 1
 
