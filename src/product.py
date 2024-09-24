@@ -67,11 +67,6 @@ class Smartphone(Product):
         self.memory = memory
         self.color = color
 
-    # def __add__(self, other: Any) -> float:
-    #     if isinstance(other, Smartphone):
-    #         return self.quantity * self.price + other.quantity * other.price
-    #     raise TypeError
-
 
 class LawnGrass(Product):
     """
@@ -92,8 +87,3 @@ class LawnGrass(Product):
         self.country = country
         self.germination_period = germination_period
         self.color = color
-
-    # def __add__(self, other: Any) -> float:
-    #     if isinstance(other, LawnGrass):
-    #         return self.quantity * self.price + other.quantity * other.price
-    #     raise TypeError
