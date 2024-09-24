@@ -5,6 +5,7 @@ from src.product import Product
 
 
 def test_category_init(product_1: Product, product_2: Product, product_3: Product, product_4: Product) -> None:
+
     category_1 = Category(
         "Смартфоны",
         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для " "удобства жизни",
@@ -31,6 +32,7 @@ def test_category_init(product_1: Product, product_2: Product, product_3: Produc
     assert category_2.product_count == 4
 
 
+
 def test_add_product(category: Category, product_4: Product) -> None:
     assert category.product_count == 3
     category.add_product(product_4)
@@ -46,3 +48,11 @@ def test_products(capsys: Any, category: Category) -> None:
             "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n"
             in captured.out
     )
+
+
+def test_category_str(capsys: Any, category: Category) -> None:
+    print(category)
+    captured = capsys.readouterr()
+    assert "Смартфоны, количество продуктов: 27 шт." in captured.out
+
+

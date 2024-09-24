@@ -1,3 +1,7 @@
+from typing import Any
+
+import pytest
+
 from src.product import Product
 
 
@@ -29,7 +33,7 @@ def test_product_4_init(product_4: Product) -> None:
     assert product_4.quantity == 7
 
 
-def test_product_price(capsys, product_1: Product) -> None:
+def test_product_price(capsys: Any, product_1: Product) -> None:
     product_1.price = 0
     captured_1 = capsys.readouterr()
     assert "Цена не должна быть нулевая или отрицательная" in captured_1.out
@@ -50,3 +54,16 @@ def test_new_product():
     assert product.description == "256GB, Серый цвет, 200MP камера"
     assert product.price == 180000.0
     assert product.quantity == 5
+
+
+def test_product_str(capsys: Any, product_1: Product) -> None:
+    print(product_1)
+    captured = capsys.readouterr()
+    assert "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт." in captured.out
+
+
+def test_product_add(product_1: Product, product_2: Product) -> None:
+    assert product_1 + product_2 == 2580000.0
+    with pytest.raises(AttributeError) as exc_info:
+        result = product_1 + 1
+
