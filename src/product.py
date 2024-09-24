@@ -21,7 +21,7 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other: Any) -> float:
-        if isinstance(other, Product):
+        if isinstance(other, self.__class__) and isinstance(self, other.__class__):
             return self.quantity * self.price + other.quantity * other.price
         raise TypeError
 
@@ -67,10 +67,10 @@ class Smartphone(Product):
         self.memory = memory
         self.color = color
 
-    def __add__(self, other: Any) -> float:
-        if isinstance(other, Smartphone):
-            return self.quantity * self.price + other.quantity * other.price
-        raise TypeError
+    # def __add__(self, other: Any) -> float:
+    #     if isinstance(other, Smartphone):
+    #         return self.quantity * self.price + other.quantity * other.price
+    #     raise TypeError
 
 
 class LawnGrass(Product):
@@ -93,7 +93,7 @@ class LawnGrass(Product):
         self.germination_period = germination_period
         self.color = color
 
-    def __add__(self, other: Any) -> float:
-        if isinstance(other, LawnGrass):
-            return self.quantity * self.price + other.quantity * other.price
-        raise TypeError
+    # def __add__(self, other: Any) -> float:
+    #     if isinstance(other, LawnGrass):
+    #         return self.quantity * self.price + other.quantity * other.price
+    #     raise TypeError
