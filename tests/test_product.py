@@ -38,7 +38,7 @@ def test_product_price(capsys: Any, product_1: Product) -> None:
     captured_1 = capsys.readouterr()
     assert "Цена не должна быть нулевая или отрицательная" in captured_1.out
     assert product_1.price == 180000.0
-    product_1.price = - 20000
+    product_1.price = -20000
     captured_2 = capsys.readouterr()
     assert "Цена не должна быть нулевая или отрицательная" in captured_2.out
     assert product_1.price == 180000.0
@@ -48,8 +48,13 @@ def test_product_price(capsys: Any, product_1: Product) -> None:
 
 def test_new_product() -> None:
     product = Product.new_product(
-        {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
-         "quantity": 5})
+        {
+            "name": "Samsung Galaxy S23 Ultra",
+            "description": "256GB, Серый цвет, 200MP камера",
+            "price": 180000.0,
+            "quantity": 5,
+        }
+    )
     assert product.name == "Samsung Galaxy S23 Ultra"
     assert product.description == "256GB, Серый цвет, 200MP камера"
     assert product.price == 180000.0
@@ -71,5 +76,7 @@ def test_product_add(product_1: Product, product_2: Product) -> None:
 def test_mro_product(capsys: Any) -> None:
     print(Product.__mro__)
     captured = capsys.readouterr()
-    assert ("(<class 'src.product.Product'>, <class 'src.product.MixinInfo'>, <class 'src.product.BaseProduct'>, "
-            "<class 'abc.ABC'>, <class 'object'>)\n") in captured
+    assert (
+        "(<class 'src.product.Product'>, <class 'src.product.MixinInfo'>, <class 'src.product.BaseProduct'>, "
+        "<class 'abc.ABC'>, <class 'object'>)\n"
+    ) in captured

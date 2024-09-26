@@ -1,5 +1,5 @@
-from typing import Any
 from abc import ABC, abstractmethod
+from typing import Any
 
 
 class BaseProduct(ABC):
@@ -9,11 +9,11 @@ class BaseProduct(ABC):
 
     @classmethod
     @abstractmethod
-    def new_product(cls, *args, **kwargs):
+    def new_product(cls, *args: Any, **kwargs: Any) -> Any:
         pass
 
     @abstractmethod
-    def price(self) -> float:
+    def price(self) -> None:
         pass
 
 
@@ -27,11 +27,11 @@ class MixinInfo:
     price: float
     quantity: int
 
-    def __init__(self):
+    def __init__(self) -> None:
         print(repr(self))
 
-    def __repr__(self):
-        return f'{self.__class__.__name__}({self.name}, {self.description}, {self.price}, {self.quantity})'
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({self.name}, {self.description}, {self.price}, {self.quantity})"
 
 
 class Product(MixinInfo, BaseProduct):

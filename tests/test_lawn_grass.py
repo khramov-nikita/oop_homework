@@ -37,6 +37,7 @@ def test_add_wrong_type(grass_1: LawnGrass) -> None:
 def test_mro_lawn_grass(capsys: Any) -> None:
     print(LawnGrass.__mro__)
     captured = capsys.readouterr()
-    assert ("(<class 'src.product.LawnGrass'>, <class 'src.product.Product'>, <class 'src.product.MixinInfo'>, "
-            "<class 'src.product.BaseProduct'>, <class 'abc.ABC'>, <class 'object'>)\n") in captured
-
+    assert (
+        "(<class 'src.product.LawnGrass'>, <class 'src.product.Product'>, <class 'src.product.MixinInfo'>, "
+        "<class 'src.product.BaseProduct'>, <class 'abc.ABC'>, <class 'object'>)\n"
+    ) in captured
