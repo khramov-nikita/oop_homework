@@ -1,7 +1,23 @@
 from typing import Any
+from abc import ABC, abstractmethod
 
 
-class Product:
+class BaseProduct(ABC):
+    """
+    Базовый класс для продуктов
+    """
+
+    @classmethod
+    @abstractmethod
+    def new_product(cls, *args, **kwargs):
+        pass
+
+    @abstractmethod
+    def price(self) -> float:
+        pass
+
+
+class Product(ABC):
     """
     Класс описывающий продукт в магазине, содержит название, описание, цену и количество
     """
@@ -25,16 +41,22 @@ class Product:
             return self.quantity * self.price + other.quantity * other.price
         raise TypeError
 
-    @property
-    def to_dict(self) -> dict:
-        return {"name": self.name, "description": self.description, "price": self.__price, "quantity": self.quantity}
+    # @property
+    # def to_dict(self) -> dict:
+    #     return {"name": self.name, "description": self.description, "price": self.__price, "quantity": self.quantity}
 
     @property
     def price(self) -> float:
+        """
+        Геттер для атрибута 'price'
+        """
         return self.__price
 
     @price.setter
     def price(self, new_price: float) -> None:
+        """
+        Сеттер для атрибута 'price'
+        """
         if new_price <= 0.0:
             print("Цена не должна быть нулевая или отрицательная")
         else:
@@ -42,6 +64,9 @@ class Product:
 
     @classmethod
     def new_product(cls, kwargs: dict) -> Any:
+        """
+        Метод создаёт новый продукт из словаря
+        """
         return cls(**kwargs)
 
 
