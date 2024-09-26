@@ -67,3 +67,9 @@ def test_product_add(product_1: Product, product_2: Product) -> None:
     with pytest.raises(TypeError) as exc_info:
         result = product_1 + 1
 
+
+def test_mro_product(capsys: Any) -> None:
+    print(Product.__mro__)
+    captured = capsys.readouterr()
+    assert ("(<class 'src.product.Product'>, <class 'src.product.MixinInfo'>, <class 'src.product.BaseProduct'>, "
+            "<class 'abc.ABC'>, <class 'object'>)\n") in captured
