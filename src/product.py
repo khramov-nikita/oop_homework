@@ -17,7 +17,24 @@ class BaseProduct(ABC):
         pass
 
 
-class Product(ABC):
+class MixinInfo:
+    """
+    Класс миксин, который выводит в консоль информацию о том, от какого класса и с какими параметрами был создан объект
+    """
+
+    name: str
+    description: str
+    price: float
+    quantity: int
+
+    def __init__(self):
+        print(repr(self))
+
+    def __repr__(self):
+        return f'{self.__class__.__name__}({self.name}, {self.description}, {self.price}, {self.quantity})'
+
+
+class Product(MixinInfo, BaseProduct):
     """
     Класс описывающий продукт в магазине, содержит название, описание, цену и количество
     """
@@ -32,6 +49,7 @@ class Product(ABC):
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     def __str__(self) -> str:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
