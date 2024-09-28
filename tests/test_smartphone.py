@@ -1,3 +1,5 @@
+from typing import Any
+
 import pytest
 
 from src.product import Smartphone
@@ -44,3 +46,11 @@ def test_add_wrong_type(smartphone_1: Smartphone) -> None:
     with pytest.raises(TypeError) as exc_info:
         result = smartphone_1 + 123
 
+
+def test_mro_smartphone(capsys: Any) -> None:
+    print(Smartphone.__mro__)
+    captured = capsys.readouterr()
+    assert (
+        "(<class 'src.product.Smartphone'>, <class 'src.product.Product'>, <class 'src.product.MixinInfo'>, "
+        "<class 'src.product.BaseProduct'>, <class 'abc.ABC'>, <class 'object'>)\n"
+    ) in captured

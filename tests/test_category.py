@@ -11,7 +11,7 @@ def test_category_init(product_1: Product, product_2: Product, product_3: Produc
     category_1 = Category(
         "Смартфоны",
         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для " "удобства жизни",
-        [product_1, product_2, product_3]
+        [product_1, product_2, product_3],
     )
     assert category_1.name == "Смартфоны"
     assert category_1.description == (
@@ -44,10 +44,10 @@ def test_products(capsys: Any, category: Category) -> None:
     print(category.products)
     captured = capsys.readouterr()
     assert (
-            "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.\n" +
-            "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n" +
-            "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n"
-            in captured.out
+        "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.\n"
+        + "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
+        + "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n"
+        in captured.out
     )
 
 
@@ -61,5 +61,3 @@ def test_add_wrong_type(category: Category) -> None:
     with pytest.raises(TypeError) as exc_info:
         category.add_product(7)
         category.add_product("sdrgsa")
-
-

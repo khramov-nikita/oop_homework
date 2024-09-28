@@ -1,3 +1,5 @@
+from typing import Any
+
 import pytest
 
 from src.product import LawnGrass
@@ -30,3 +32,12 @@ def test_add(grass_1: LawnGrass, grass_2: LawnGrass) -> None:
 def test_add_wrong_type(grass_1: LawnGrass) -> None:
     with pytest.raises(TypeError) as exc_info:
         result = grass_1 + 123
+
+
+def test_mro_lawn_grass(capsys: Any) -> None:
+    print(LawnGrass.__mro__)
+    captured = capsys.readouterr()
+    assert (
+        "(<class 'src.product.LawnGrass'>, <class 'src.product.Product'>, <class 'src.product.MixinInfo'>, "
+        "<class 'src.product.BaseProduct'>, <class 'abc.ABC'>, <class 'object'>)\n"
+    ) in captured
