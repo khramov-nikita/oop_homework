@@ -28,6 +28,9 @@ class Category:
         return f"{self.name}, количество продуктов: {quantity} шт."
 
     def add_product(self, *args: Product) -> None:
+        """
+        Метод добавляет продукты в категорию
+        """
         for arg in args:
             if issubclass(arg.__class__, Product):
                 self.__products.append(arg)
@@ -37,6 +40,9 @@ class Category:
 
     @property
     def products(self) -> str:
+        """
+        Метод возвращает список продуктов в категории в виде строки
+        """
         result = []
         for product in self.__products:
             result.append(f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n")
@@ -44,4 +50,7 @@ class Category:
 
     @property
     def products_list(self) -> Any:
+        """
+        Метод возвращает список продуктов в категории в виде списка
+        """
         return self.__products
