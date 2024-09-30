@@ -64,3 +64,10 @@ def category() -> Category:
             Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14),
         ],
     )
+
+
+@pytest.fixture
+def category_empty() -> Category:
+    Category.category_count = 0
+    Category.product_count = 0
+    return Category("Пустая категория", "Категория без продуктов", [])

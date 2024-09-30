@@ -61,3 +61,11 @@ def test_add_wrong_type(category: Category) -> None:
     with pytest.raises(TypeError) as exc_info:
         category.add_product(7)
         category.add_product("sdrgsa")
+
+
+def test_middle_price(category: Category) -> None:
+    assert category.middle_price() == 140333.3
+
+
+def test_middle_price_empty(category_empty) -> None:
+    assert category_empty.middle_price() == 0.0

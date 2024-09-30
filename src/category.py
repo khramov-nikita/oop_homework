@@ -54,3 +54,17 @@ class Category:
         Метод возвращает список продуктов в категории в виде списка
         """
         return self.__products
+
+    def middle_price(self):
+        """
+        Метод возвращает среднею цену по продуктам
+        """
+        try:
+            sum_price = 0
+            for product in self.products_list:
+                sum_price += product.price
+            result = round(sum_price / len(self.products_list), 1)
+        except ZeroDivisionError:
+            return 0.0
+        else:
+            return result
