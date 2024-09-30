@@ -80,3 +80,13 @@ def test_mro_product(capsys: Any) -> None:
         "(<class 'src.product.Product'>, <class 'src.product.MixinInfo'>, <class 'src.product.BaseProduct'>, "
         "<class 'abc.ABC'>, <class 'object'>)\n"
     ) in captured
+
+
+def test_product_zero_quantity() -> None:
+    with pytest.raises(ValueError) as exc_info:
+        product_invalid = Product("Бракованный товар", "Неверное количество", 1000.0, 0)
+
+
+def test_product_negative_quantity() -> None:
+    with pytest.raises(ValueError) as exc_info:
+        product_invalid = Product("Бракованный товар", "Неверное количество", 1000.0, -1)

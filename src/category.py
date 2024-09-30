@@ -68,5 +68,3 @@ class Category:
             return 0.0
         else:
             return result
-
-
